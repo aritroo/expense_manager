@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter App',
+      title: 'Expense Manager',
       home: MyHomePage(),
     );
   }
@@ -25,22 +25,15 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Expense Manager'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.amber,
-              child: Text(
-                'Chart!',
-                textAlign: TextAlign.center,
-              ),
-              elevation: 5,
-            ),
+            width: 20,
+            child: Text("Chart!"),
           ),
           Column(
             children: transactions.map((tx) {
