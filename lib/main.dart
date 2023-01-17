@@ -63,6 +63,14 @@ class MyHomePage extends StatelessWidget {
                           color: Colors.purple,
                           width: 1,
                         ),
+                        borderRadius: BorderRadius.circular(8.0),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.white,
+                        //     offset: Offset(0.0, 1.0),
+                        //     blurRadius: 4.0,
+                        //   ),
+                        // ],
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
