@@ -18,8 +18,8 @@ class MyHomePage extends StatelessWidget {
   final List<Transaction> transaction = [
     Transaction(
       id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
+      title: 'New',
+      amount: 80.99,
       date: DateTime.now(),
     ),
     Transaction(
