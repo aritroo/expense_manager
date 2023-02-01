@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'App',
+      title: 'Second App',
       home: MyHomePage(),
     );
   }
@@ -37,7 +37,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Expense Manager'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
@@ -77,7 +77,7 @@ class MyHomePage extends StatelessWidget {
                         tx.amount.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 25,
                             color: Colors.purple),
                       ),
                     ),
