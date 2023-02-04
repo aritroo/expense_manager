@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
 import 'package:intl/intl.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,66 +80,53 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: transaction.map((tx) {
               return Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.yellow,
-                        Colors.orangeAccent,
-                        Colors.yellow.shade300,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.white,
+                        //     offset: Offset(0.0, 1.0),
+                        //     blurRadius: 4.0,
+                        //   ),
+                        // ],
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        '\$ ${tx.amount}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black),
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.white,
-                          //     offset: Offset(0.0, 1.0),
-                          //     blurRadius: 4.0,
-                          //   ),
-                          // ],
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          '\$ ${tx.amount}',
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            DateFormat.yMMMd().format(tx.date),
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        Text(
+                          DateFormat.yMMMd().format(tx.date),
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               );
             }).toList(),
