@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.purple,
         title: Text('Expense Manager'),
       ),
       body: Column(
@@ -45,13 +45,13 @@ class MyHomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              color: Colors.blueGrey,
+              color: Colors.blue,
               child: Text('CHART'),
               elevation: 5,
             ),
           ),
           Card(
-            elevation: 5,
+            elevation: 2,
             child: Container(
               padding: EdgeInsets.all(10),
               child: Column(
@@ -93,13 +93,6 @@ class MyHomePage extends StatelessWidget {
                           width: 1,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.white,
-                        //     offset: Offset(0.0, 1.0),
-                        //     blurRadius: 4.0,
-                        //   ),
-                        // ],
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
