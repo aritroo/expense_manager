@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './transaction.dart';
 import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
@@ -31,11 +30,13 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  final titlecontroller = TextEditingController();
+  final amountcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
         title: Text('Expense Manager'),
       ),
       body: Column(
@@ -59,18 +60,25 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    controller: titlecontroller,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountcontroller,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(titlecontroller.text);
+                        print(amountcontroller.text);
+                      },
                       child: Text(
                         'Add Transaction',
                         style: TextStyle(color: Colors.white),
                       ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.purple),
                     ),
                   )
                 ],
