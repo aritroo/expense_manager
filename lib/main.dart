@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import './transaction.dart';
 import 'package:intl/intl.dart';
-import 'package:fl_chart/fl_chart.dart';
+import './models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,11 +31,13 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  final titlecontroller = TextEditingController();
+  final amountcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
         title: Text('Expense Manager'),
       ),
       body: Column(
@@ -46,13 +47,13 @@ class MyHomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              color: Colors.blueGrey,
+              color: Colors.blue,
               child: Text('CHART'),
               elevation: 5,
             ),
           ),
           Card(
-            elevation: 5,
+            elevation: 2,
             child: Container(
               padding: EdgeInsets.all(10),
               child: Column(
@@ -60,18 +61,25 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    controller: titlecontroller,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountcontroller,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(titlecontroller.text);
+                        print(amountcontroller.text);
+                      },
                       child: Text(
                         'Add Transaction',
                         style: TextStyle(color: Colors.white),
                       ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.purple),
                     ),
                   )
                 ],
@@ -81,66 +89,46 @@ class MyHomePage extends StatelessWidget {
           Column(
             children: transaction.map((tx) {
               return Card(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.yellow,
-                        Colors.orangeAccent,
-                        Colors.yellow.shade300,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        '\$ ${tx.amount}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black),
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.white,
-                          //     offset: Offset(0.0, 1.0),
-                          //     blurRadius: 4.0,
-                          //   ),
-                          // ],
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          '\$ ${tx.amount}',
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            DateFormat.yMMMd().format(tx.date),
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        Text(
+                          DateFormat.yMMMd().format(tx.date),
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               );
             }).toList(),
