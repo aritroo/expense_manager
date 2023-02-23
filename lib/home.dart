@@ -53,7 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expense Manager'),
+        title: Text(
+          'Expense Manager',
+          style: TextStyle(fontFamily: 'OpenSans'),
+        ),
         actions: [
           IconButton(
               onPressed: () => _startAddNewTransaction(context),
