@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -12,19 +13,38 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titlecontroller = TextEditingController();
-
   final amountcontroller = TextEditingController();
+  DateTime? _selectedDate;
 
   void submitData() {
+    if (amountcontroller.text.isEmpty) {
+      return;
+    }
     final enteredTitile = titlecontroller.text;
     final enteredAmount = double.parse(amountcontroller.text);
 
-    if (enteredTitile.isEmpty || enteredAmount <= 0) {
+    if (enteredTitile.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
-    widget.addTx(enteredTitile, enteredAmount);
+    widget.addTx(enteredTitile, enteredAmount, _selectedDate);
 
     Navigator.of(context).pop();
+  }
+
+  void _DatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1990),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -69,16 +89,26 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               // onSubmitted: (_) => submitData(),
             ),
+            SizedBox(
+              height: 2.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('No Date Chosen !'),
+                Expanded(
+                  child: Text(
+                    _selectedDate == null
+                        ? 'No Date Chosen !'
+                        : DateFormat.yMd().format(_selectedDate!),
+                  ),
+                ),
                 TextButton(
-                  onPressed: () => {},
+                  onPressed: _DatePicker,
                   child: Text(
                     'Choose Date',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

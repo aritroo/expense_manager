@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         title: 'Second App',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
-              .copyWith(secondary: Colors.amber),
+              .copyWith(secondary: Colors.amber, error: Colors.redAccent),
           fontFamily: 'Quicksand',
           appBarTheme: AppBarTheme(
               titleTextStyle: ThemeData.light()

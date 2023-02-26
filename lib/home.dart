@@ -11,18 +11,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shirt',
-      amount: 80.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New Jacket',
-      amount: 80.99,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shirt',
+    //   amount: 80.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'New Jacket',
+    //   amount: 80.99,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -35,11 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now(),
+        date: chosenDate,
         id: DateTime.now().toString());
 
     setState(() {
@@ -58,6 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+  }
+
+  void deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
   }
 
   @override
@@ -84,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, deleteTransaction),
           ],
         ),
       ),
