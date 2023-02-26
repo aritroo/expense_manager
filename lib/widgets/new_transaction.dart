@@ -38,12 +38,33 @@ class _NewTransactionState extends State<NewTransaction> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(
+                labelText: 'Title',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(6),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
               controller: titlecontroller,
               // onSubmitted: (_) => submitData(),
             ),
+            SizedBox(
+              height: 2.h,
+            ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: InputDecoration(
+                labelText: 'Amount',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(6),
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
               controller: amountcontroller,
               keyboardType: TextInputType.number,
               // onSubmitted: (_) => submitData(),
@@ -73,8 +94,10 @@ class _NewTransactionState extends State<NewTransaction> {
                 color: Colors.white,
                 size: 44,
               ),
-              style:
-                  ElevatedButton.styleFrom(shape: CircleBorder(), elevation: 2),
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(),
+                elevation: 2,
+              ),
             ),
           ],
         ),
