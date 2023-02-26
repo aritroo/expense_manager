@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -34,6 +35,7 @@ class _NewTransactionState extends State<NewTransaction> {
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
@@ -46,16 +48,34 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               // onSubmitted: (_) => submitData(),
             ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: TextButton(
-                onPressed: submitData,
-                child: Text(
-                  'Add Transaction',
-                  style: TextStyle(color: Colors.purple),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('No Date Chosen !'),
+                TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    'Choose Date',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            SizedBox(
+              width: 22.w,
+            ),
+            ElevatedButton(
+              onPressed: submitData,
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 44,
               ),
-            )
+              style:
+                  ElevatedButton.styleFrom(shape: CircleBorder(), elevation: 2),
+            ),
           ],
         ),
       ),
