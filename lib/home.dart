@@ -11,18 +11,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'New Shirt',
-    //   amount: 80.99,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'New Jacket',
-    //   amount: 80.99,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: 't1',
+      title: 'New Shirt',
+      amount: 80.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New Jacket',
+      amount: 80.99,
+      date: DateTime.now(),
+    ),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Expense Manager',
           style: TextStyle(fontFamily: 'OpenSans'),
@@ -71,7 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               onPressed: () => _startAddNewTransaction(context),
-              icon: Icon(Icons.add)),
+              icon: Icon(
+                Icons.add,
+                size: 30,
+              )),
         ],
       ),
       body: SingleChildScrollView(
